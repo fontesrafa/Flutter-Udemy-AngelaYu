@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizzler_flutter/question.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,21 +30,30 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Widget> scoreKeeper = [];
+
+  List<Question> questions = [
+    Question(text: 'Are you crazy?', answer: false),
+    Question(text: 'Are you pretty?', answer: true),
+    Question(text: 'Are you ugly?', answer: false),
+  ];
+  int questionNumber = 0;
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Expanded(
+        Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go',
+                questions[questionNumber].text,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 25.0,
                 ),
@@ -66,7 +76,26 @@ class _QuizPageState extends State<QuizPage> {
                   fontSize: 20.0,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (questions[questionNumber].answer == true) {
+                    scoreKeeper.add(
+                      const Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ),
+                    );
+                  } else {
+                    scoreKeeper.add(
+                      const Icon(
+                        Icons.check,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+                  questionNumber++;
+                });
+              },
             ),
           ),
         ),
@@ -85,9 +114,31 @@ class _QuizPageState extends State<QuizPage> {
                   fontSize: 20.0,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  if (questions[questionNumber].answer == false) {
+                    scoreKeeper.add(
+                      const Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ),
+                    );
+                  } else {
+                    scoreKeeper.add(
+                      const Icon(
+                        Icons.check,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+                  questionNumber++;
+                });
+              },
             ),
           ),
+        ),
+        Row(
+          children: scoreKeeper,
         )
       ],
     );
