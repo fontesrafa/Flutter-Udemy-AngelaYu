@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler_flutter/question.dart';
+import 'package:quizzler_flutter/quizzBrain.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,14 +32,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   List<Widget> scoreKeeper = [];
-
-  List<Question> questions = [
-    Question(text: 'Are you crazy?', answer: false),
-    Question(text: 'Are you pretty?', answer: true),
-    Question(text: 'Are you ugly?', answer: false),
-  ];
-  int questionNumber = 0;
-
+  QuizzBrain quizzBrain = QuizzBrain();
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,7 +45,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber].text,
+                quizzBrain.getQuestion(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.white,
@@ -78,7 +72,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (questions[questionNumber].answer == true) {
+                  if (quizzBrain.getAnswer() == true) {
                     scoreKeeper.add(
                       const Icon(
                         Icons.check,
@@ -93,7 +87,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     );
                   }
-                  questionNumber++;
+                  quizzBrain.nextQuestion();
                 });
               },
             ),
@@ -116,7 +110,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  if (questions[questionNumber].answer == false) {
+                  if (quizzBrain.getAnswer() == false) {
                     scoreKeeper.add(
                       const Icon(
                         Icons.check,
@@ -131,7 +125,7 @@ class _QuizPageState extends State<QuizPage> {
                       ),
                     );
                   }
-                  questionNumber++;
+                  quizzBrain.nextQuestion();
                 });
               },
             ),
