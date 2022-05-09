@@ -1,4 +1,4 @@
-import 'package:quizzler_flutter/question.dart';
+import 'question.dart';
 
 class QuizzBrain {
   final List<Question> _questions = [

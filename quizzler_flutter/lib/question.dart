@@ -5,8 +5,5 @@ class Question {
   Question({
     required this.text,
     required this.answer,
-  }) {
-    text = text;
-    answer = answer;
-  }
+  });
 }

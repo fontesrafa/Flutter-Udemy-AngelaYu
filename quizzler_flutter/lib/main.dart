@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler_flutter/question.dart';
 import 'package:quizzler_flutter/quizzBrain.dart';
 
 void main() {
@@ -82,7 +81,7 @@ class _QuizPageState extends State<QuizPage> {
                   } else {
                     scoreKeeper.add(
                       const Icon(
-                        Icons.check,
+                        Icons.close,
                         color: Colors.red,
                       ),
                     );
@@ -120,7 +119,7 @@ class _QuizPageState extends State<QuizPage> {
                   } else {
                     scoreKeeper.add(
                       const Icon(
-                        Icons.check,
+                        Icons.close,
                         color: Colors.red,
                       ),
                     );
