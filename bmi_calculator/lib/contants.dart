@@ -24,3 +24,18 @@ const kTitleResultsPageTextStyle = TextStyle(
   fontSize: 50.0,
   fontWeight: FontWeight.bold,
 );
+
+const kResultTextStyle = TextStyle(
+  fontSize: 25.0,
+  fontWeight: FontWeight.bold,
+  color: Colors.green,
+);
+
+const kBMIResultTextStyle = TextStyle(
+  fontSize: 100.0,
+  fontWeight: FontWeight.bold,
+);
+
+const kInterpretationTextStyle = TextStyle(
+  fontSize: 20.0,
+);
